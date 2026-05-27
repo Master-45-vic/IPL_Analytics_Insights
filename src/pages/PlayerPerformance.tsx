@@ -7,7 +7,9 @@ import { usePlayersData } from '../hooks/usePlayersData';
 import { PlayerProfilePanel } from '../components/cards/PlayerProfilePanel';
 import { PlayerHallOfFame } from '../components/cards/PlayerHallOfFame';
 import { ConsistentPlayers } from '../components/cards/ConsistentPlayers';
+import { ConsistentBowlers } from '../components/cards/ConsistentBowlers';
 import { VenueKings } from '../components/cards/VenueKings';
+import { VenueKingsBowler } from '../components/cards/VenueKingsBowler';
 import { BattingStyleDistribution } from '../components/charts/BattingStyleDistribution';
 import { BowlingRoleImpact } from '../components/cards/BowlingRoleImpact';
 import { HeadToHeadLegends } from '../components/cards/HeadToHeadLegends';
@@ -441,13 +443,25 @@ export const PlayerPerformance = ({ dashboardData, filters, updateFilters }: Pla
       <PlayerHallOfFame players={filteredPlayers} />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <ConsistentPlayers players={filteredPlayers} />
-        <VenueKings players={filteredPlayers} />
+        {playerType === 'Batters' ? (
+          <>
+            <ConsistentPlayers players={filteredPlayers} />
+            <VenueKings players={filteredPlayers} />
+          </>
+        ) : (
+          <>
+            <ConsistentBowlers players={filteredPlayers} />
+            <VenueKingsBowler players={filteredPlayers} />
+          </>
+        )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <BattingStyleDistribution players={filteredPlayers} />
-        <BowlingRoleImpact players={filteredPlayers} />
+      <div className="mb-8">
+        {playerType === 'Batters' ? (
+          <BattingStyleDistribution players={filteredPlayers} />
+        ) : (
+          <BowlingRoleImpact players={filteredPlayers} />
+        )}
       </div>
 
       <HeadToHeadLegends players={filteredPlayers} />
