@@ -43,7 +43,7 @@ export const SnapshotBanner = ({ filters, totalMatches }: SnapshotBannerProps) =
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 overflow-x-auto hide-scrollbar">
         <div className="flex items-center justify-between min-w-max gap-8">
-          {items.map((item, index) => (
+          {items.map((item) => (
             <div key={item.label} className="flex flex-col items-center">
               <span className="text-ipl-text-muted text-[10px] font-bold uppercase tracking-wider mb-0.5">{item.label}</span>
               <span className="text-ipl-text text-lg font-extrabold">{item.value}</span>
