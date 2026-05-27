@@ -1,71 +1,149 @@
-🏏 IPL Analytics Insights
+# 🏏 IPL Analytics Insights
 
-A modern, interactive IPL analytics platform built with React 19, TypeScript, Vite, Tailwind CSS, Recharts, and Framer Motion. The dashboard transforms raw IPL ball-by-ball data into meaningful visual insights through advanced analytics, dynamic filtering, and responsive visualizations.
+A modern, interactive IPL analytics platform built using **React 19, TypeScript, Vite, Tailwind CSS, Recharts, and Framer Motion**. The dashboard transforms raw IPL ball-by-ball data into meaningful insights through advanced analytics, dynamic filtering, and rich visualizations.
 
-📌 Overview
+---
 
-IPL Analytics Insights is designed to help users explore IPL data from multiple perspectives, including:
+## 📌 Overview
 
-Toss impact on match outcomes
-Match phase performance (Powerplay, Middle Overs, Death Overs)
-Batter and bowler performance analytics
-Venue-specific trends
-Team-wise and season-wise comparisons
-Interactive player profiles and statistical insights
+IPL Analytics Insights helps users explore IPL data from multiple perspectives, including:
 
-The application preprocesses large IPL datasets into optimized JSON files, enabling instant filtering and smooth user interaction without performance issues.
+- Toss impact on match outcomes
+- Match phase performance (Powerplay, Middle Overs, Death Overs)
+- Batter and bowler performance analytics
+- Venue-specific trends
+- Team-wise and season-wise comparisons
+- Interactive player profiles and statistical insights
 
-✨ Key Features
-🎯 Toss Analysis
-Toss Winner vs Toss Loser match outcome comparison
-Toss impact trends across IPL seasons
-Toss decision intelligence (Bat First vs Bowl First)
-Venue-wise toss advantage analysis
-Dynamic filtering by season, team, and venue
-⚡ Match Phase Analysis
-Powerplay (1–6), Middle Overs (7–15), and Death Overs (16–20) analysis
-Winning Teams vs Losing Teams phase comparison
-Phase contribution to winning matches
-Radar charts for winning team profiles
-Team mode and venue mode analytics
-Match momentum probability insights
-👑 Player Performance Analysis
-Top batters and bowlers leaderboards
-Player Hall of Fame
-Venue specialists ("Venue Kings")
-Consistent player identification
-Batting and bowling role distributions
-Interactive player profile panel with performance trends
-🎨 Modern User Experience
-Premium glassmorphism design
-Dark mode sports analytics theme
-Framer Motion animations
-Fully responsive layout
-Dynamic charts powered by Recharts
-Real-time filtering across all modules
-🛠 Technology Stack
-Frontend
-React 19
-TypeScript
-Vite
-Tailwind CSS
-Framer Motion
-Recharts
-Lucide React
-Data Processing
-Node.js
-Custom preprocessing scripts
-JSON-based optimized data delivery
-Version Control & Deployment
-Git & GitHub
-Vercel-ready architecture
-📂 Project Structure
+---
+
+## ✨ Features
+
+### 🎯 Toss Analysis
+- Toss Winner vs Toss Loser comparison
+- Toss impact trends across IPL seasons
+- Toss decision intelligence (Bat First vs Bowl First)
+- Venue-wise toss advantage analysis
+- Dynamic filtering by season, team, and venue
+
+### ⚡ Match Phase Analysis
+- Powerplay (1–6), Middle Overs (7–15), and Death Overs (16–20) analytics
+- Winning Teams vs Losing Teams phase comparison
+- Phase contribution to match victories
+- Winning Team Profile radar visualization
+- Team-specific and venue-specific phase analysis
+- Match momentum probability insights
+
+### 👑 Player Performance Analysis
+- Top batter and bowler leaderboards
+- Hall of Fame section
+- Venue specialists ("Venue Kings")
+- Consistent player identification
+- Batting and bowling role distributions
+- Interactive player profile drawer
+- Performance trend analysis
+
+---
+
+## 🔄 Data Engineering & Preprocessing Pipeline
+
+The original IPL dataset contained over **280,000+ ball-by-ball deliveries (~68 MB)**. Processing this data directly in the browser would have caused performance issues and slow loading times.
+
+To overcome this, a dedicated preprocessing pipeline was developed using **Node.js**.
+
+### Data Processing Workflow
+
+- Parsed raw IPL ball-by-ball datasets
+- Cleaned and standardized venue names
+- Removed duplicate match records
+- Generated match-level statistics
+- Calculated phase-wise scoring:
+  - Powerplay (Overs 1–6)
+  - Middle Overs (Overs 7–15)
+  - Death Overs (Overs 16–20)
+- Aggregated player performance metrics:
+  - Runs
+  - Balls Faced
+  - Fours
+  - Sixes
+  - Strike Rate
+  - Wickets
+  - Economy Rate
+  - Dot Balls
+  - Maidens
+
+### Optimized Data Outputs
+
+The preprocessing scripts generate lightweight analytics-ready files:
+
+```text
+matches.json
+players.json
+```
+
+### Benefits
+
+- Faster dashboard loading
+- Real-time filtering and analytics
+- Reduced browser memory usage
+- Smooth chart rendering
+- Scalable architecture for future IPL seasons
+
+### Custom Preprocessing Scripts
+
+```text
+scripts/
+├── preprocess.mjs
+└── preprocess_players.mjs
+```
+
+---
+
+## 🎨 User Experience
+
+- Premium glassmorphism design
+- Dark sports analytics theme
+- Smooth Framer Motion animations
+- Responsive layout for desktop and mobile
+- Interactive charts powered by Recharts
+- Dynamic filtering across all modules
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Recharts
+- Framer Motion
+- Lucide React
+
+### Data Processing
+
+- Node.js
+- Custom preprocessing scripts
+- Optimized JSON data architecture
+
+### Version Control & Deployment
+
+- Git & GitHub
+- Vercel
+
+---
+
+## 📂 Project Structure
+
+```text
 IPL_Analytics_Insights/
 │
 ├── public/
-│   ├── data/
-│   │   ├── matches.json
-│   │   └── players.json
+│   └── data/
+│       ├── matches.json
+│       └── players.json
 │
 ├── src/
 │   ├── components/
@@ -80,55 +158,80 @@ IPL_Analytics_Insights/
 │   └── preprocess_players.mjs
 │
 ├── data/
-│   └── raw IPL CSV datasets
+│   └── raw IPL datasets
 │
 ├── notebooks/
-│   └── exploratory analysis notebooks
+│   └── exploratory analysis
 │
 └── README.md
-⚙️ Data Engineering Pipeline
+```
 
-The original IPL dataset contained over 280,000+ ball-by-ball records and was too large for direct browser processing.
+---
 
-To solve this:
+## 🚀 Getting Started
 
-Custom Node.js preprocessing scripts aggregate raw data.
-Match-level and player-level statistics are calculated offline.
-Optimized JSON datasets are generated.
-React hooks cache data in memory for instant filtering and visualization.
+### Clone Repository
 
-This architecture dramatically improves performance and scalability.
-
-📊 Analytics Modules
-Module	Purpose
-Toss Analysis	Understand how toss outcomes influence match results
-Match Phase Analysis	Identify which innings phase contributes most to winning
-Player Performance	Analyze batters, bowlers, consistency, and venue specialists
-🚀 Getting Started
-Clone Repository
+```bash
 git clone https://github.com/Master-45-vic/IPL_Analytics_Insights.git
 cd IPL_Analytics_Insights
-Install Dependencies
-npm install
-Run Development Server
-npm run dev
-Production Build
-npm run build
-Preview Production Build
-npm run preview
-📈 Future Enhancements
-Head-to-head team analysis
-Advanced bowling matchup analytics
-Win probability prediction models
-AI-generated match insights
-Fantasy cricket recommendation engine
-Predictive analytics using machine learning
-👨‍💻 Author
+```
 
-Prashanth M
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+---
+
+## 📊 Analytics Modules
+
+| Module | Description |
+|----------|-------------|
+| Toss Analysis | Analyze the impact of winning the toss on match outcomes |
+| Match Phase Analysis | Explore Powerplay, Middle Overs, and Death Overs contributions |
+| Player Performance | Evaluate batters, bowlers, consistency, and venue specialists |
+
+---
+
+## 🔮 Future Enhancements
+
+- Head-to-head team analysis
+- Win probability prediction models
+- Advanced venue intelligence
+- AI-generated cricket insights
+- Fantasy cricket recommendation engine
+- Machine learning-based match predictions
+
+---
+
+## 👨‍💻 Author
+
+**Prashanth M**
 
 Passionate about Data Analytics, Artificial Intelligence, Machine Learning, and Sports Analytics.
 
-📄 License
+---
+
+## 📄 License
 
 This project was developed for educational, research, and competition purposes using publicly available IPL datasets.
