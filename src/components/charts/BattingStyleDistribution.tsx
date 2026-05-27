@@ -45,7 +45,7 @@ export const BattingStyleDistribution = ({ players }: BattingStyleDistributionPr
   return (
     <div className="glass-card p-6 flex flex-col h-full">
       <h3 className="text-xl font-bold text-ipl-text mb-6">Batting Style Distribution</h3>
-      <div className="flex-1 min-h-[350px]">
+      <div className="h-[350px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie data={chartData} cx="50%" cy="50%" innerRadius={80} outerRadius={110} paddingAngle={2} dataKey="value">
