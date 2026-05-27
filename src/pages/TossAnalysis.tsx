@@ -4,6 +4,7 @@ import { KPICards } from '../components/cards/KPICards';
 import { TossImpactBarChart } from '../components/charts/TossImpactBarChart';
 import { OutcomeRadialChart } from '../components/charts/OutcomeRadialChart';
 import { TopVenuesChart } from '../components/charts/TopVenuesChart';
+import { TopTeamsChart } from '../components/charts/TopTeamsChart';
 import { VenueInsightsTable } from '../components/tables/VenueInsightsTable';
 import { DataStoryCards } from '../components/cards/DataStoryCards';
 import { TossKeyRecords } from '../components/cards/TossKeyRecords';
@@ -27,10 +28,11 @@ export const TossAnalysis = ({ data, filteredMatches, filters, updateFilters }: 
     return <TeamAnalysis data={data} filteredMatches={filteredMatches} filters={filters} updateFilters={updateFilters} />;
   }
 
-  const { tossWinnerWins, tossLoserWins, totalMatches, venuesData } = useMemo(() => {
+  const { tossWinnerWins, tossLoserWins, totalMatches, venuesData, teamsData } = useMemo(() => {
     let winnerWins = 0;
     let loserWins = 0;
     const venueMap = new Map<string, { matches: number; winnerWins: number; loserWins: number }>();
+    const teamMap = new Map<string, { matches: number; winnerWins: number; loserWins: number }>();
 
     filteredMatches.forEach(match => {
       if (!match.winner || match.winner === 'No Result' || !match.toss_winner) return;
@@ -47,6 +49,15 @@ export const TossAnalysis = ({ data, filteredMatches, filters, updateFilters }: 
         else vStats.loserWins++;
         venueMap.set(match.venue, vStats);
       }
+
+      const team = match.toss_winner;
+      if (team) {
+        const tStats = teamMap.get(team) || { matches: 0, winnerWins: 0, loserWins: 0 };
+        tStats.matches++;
+        if (tossWinnerWonMatch) tStats.winnerWins++;
+        else tStats.loserWins++;
+        teamMap.set(team, tStats);
+      }
     });
 
     const vData: VenueInsight[] = Array.from(venueMap.entries()).map(([venue, stats]) => ({
@@ -58,11 +69,21 @@ export const TossAnalysis = ({ data, filteredMatches, filters, updateFilters }: 
       tossLoserWinRate: stats.matches > 0 ? stats.loserWins / stats.matches : 0,
     }));
 
+    const tData = Array.from(teamMap.entries()).map(([team, stats]) => ({
+      team,
+      matches: stats.matches,
+      tossWinnerWins: stats.winnerWins,
+      tossLoserWins: stats.loserWins,
+      tossWinnerWinRate: stats.matches > 0 ? stats.winnerWins / stats.matches : 0,
+      tossLoserWinRate: stats.matches > 0 ? stats.loserWins / stats.matches : 0,
+    }));
+
     return {
       tossWinnerWins: winnerWins,
       tossLoserWins: loserWins,
       totalMatches: winnerWins + loserWins,
-      venuesData: vData
+      venuesData: vData,
+      teamsData: tData
     };
   }, [filteredMatches]);
 
@@ -136,12 +157,23 @@ export const TossAnalysis = ({ data, filteredMatches, filters, updateFilters }: 
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
             <div className="lg:col-span-2 flex flex-col gap-6">
-              <div className="glass-card p-6 relative" id="top-venues-chart">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold text-ipl-text">Top Toss Advantage Venues</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="glass-card p-6 relative" id="top-venues-chart">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-bold text-ipl-text">Top Toss Advantage Venues</h3>
+                  </div>
+                  <div className="h-[300px]">
+                    <TopVenuesChart venuesData={venuesData} />
+                  </div>
                 </div>
-                <div className="h-[300px]">
-                  <TopVenuesChart venuesData={venuesData} />
+
+                <div className="glass-card p-6 relative" id="top-teams-chart">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-bold text-ipl-text">Top Toss Advantage Teams</h3>
+                  </div>
+                  <div className="h-[300px]">
+                    <TopTeamsChart teamsData={teamsData} />
+                  </div>
                 </div>
               </div>
               
