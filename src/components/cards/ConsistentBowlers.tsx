@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import type { PlayerMatchRecord } from '../../types';
 import { useMemo } from 'react';
 import { Target } from 'lucide-react';
@@ -57,7 +56,7 @@ export const ConsistentBowlers = ({ players }: ConsistentBowlersProps) => {
             <Tooltip 
               cursor={{ fill: 'var(--theme-border, #ffffff05)' }} 
               contentStyle={{ backgroundColor: 'var(--theme-bg-card, #111827)', borderColor: 'var(--theme-border, #ffffff20)', borderRadius: '8px' }}
-              formatter={(val: number) => [val.toFixed(2), 'Economy Rate']}
+              formatter={(val: any) => [Number(val).toFixed(2), 'Economy Rate']}
             />
             <Bar dataKey="economy" fill="var(--theme-success, #10B981)" radius={[0, 4, 4, 0]} barSize={20} animationDuration={1500} />
           </BarChart>

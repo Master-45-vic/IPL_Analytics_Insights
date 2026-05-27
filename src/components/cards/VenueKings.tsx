@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import type { PlayerMatchRecord } from '../../types';
@@ -73,7 +72,7 @@ export const VenueKings = ({ players }: VenueKingsProps) => {
               cursor={{ fill: 'var(--theme-border, #ffffff05)' }} 
               contentStyle={{ backgroundColor: 'var(--theme-bg-card, #111827)', borderColor: 'var(--theme-border, #ffffff20)', borderRadius: '8px' }}
               labelFormatter={(val) => `Venue: ${val}`}
-              formatter={(val: number, name: string, props: any) => [val, `Runs (${props.payload.player})`]}
+              formatter={(val: any, _name: any, props: any) => [val, `Runs (${props.payload.player})`]}
             />
             <Bar dataKey="runs" fill="var(--theme-accent, #FF6B35)" radius={[0, 4, 4, 0]} barSize={20} animationDuration={1500} />
           </BarChart>

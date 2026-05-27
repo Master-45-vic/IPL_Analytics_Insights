@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import type { PlayerMatchRecord } from '../../types';
 import { useMemo } from 'react';
 import { Target } from 'lucide-react';
@@ -64,7 +63,7 @@ export const ConsistentPlayers = ({ players }: ConsistentPlayersProps) => {
             <Tooltip 
               cursor={{ fill: 'var(--theme-border, #ffffff05)' }} 
               contentStyle={{ backgroundColor: 'var(--theme-bg-card, #111827)', borderColor: 'var(--theme-border, #ffffff20)', borderRadius: '8px' }}
-              formatter={(val: number) => [`${val.toFixed(1)}%`, 'CV (Variance)']}
+              formatter={(val: any) => [`${Number(val).toFixed(1)}%`, 'CV (Variance)']}
             />
             <Bar dataKey="cv" fill="var(--theme-primary, #00D4FF)" radius={[0, 4, 4, 0]} barSize={20} animationDuration={1500} />
           </BarChart>
