@@ -1,9 +1,8 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FilterPanel } from '../components/filters/FilterPanel';
-import { Download, X } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ScatterChart, Scatter, ZAxis, Legend } from 'recharts';
-import type { DashboardData, MatchFilterState, PlayerMatchRecord } from '../types';
+import type { DashboardData, MatchFilterState } from '../types';
 import { usePlayersData } from '../hooks/usePlayersData';
 import { PlayerProfilePanel } from '../components/cards/PlayerProfilePanel';
 import { PlayerHallOfFame } from '../components/cards/PlayerHallOfFame';
@@ -20,7 +19,7 @@ interface PlayerPerformanceProps {
 }
 
 export const PlayerPerformance = ({ dashboardData, filters, updateFilters }: PlayerPerformanceProps) => {
-  const { data, filteredPlayers, loading, error } = usePlayersData('/players.json', filters);
+  const { filteredPlayers, loading, error } = usePlayersData('/players.json', filters);
   const [selectedPlayer, setSelectedPlayer] = useState<string | null>(null);
   const [playerType, setPlayerType] = useState<'Batters' | 'Bowlers'>('Batters');
 

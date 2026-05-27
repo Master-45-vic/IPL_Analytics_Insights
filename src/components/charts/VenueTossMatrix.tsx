@@ -7,7 +7,7 @@ interface VenueTossMatrixProps {
 }
 
 export const VenueTossMatrix = ({ matches }: VenueTossMatrixProps) => {
-  const { chartData, uniqueSeasons } = useMemo(() => {
+  const { chartData } = useMemo(() => {
     const matrix = new Map<string, { matches: number, tossWinnerWins: number }>();
     const seasons = new Set<string>();
 
@@ -35,8 +35,7 @@ export const VenueTossMatrix = ({ matches }: VenueTossMatrixProps) => {
     }).filter(d => d.matches >= 3); // Minimum matches to show
 
     return { 
-      chartData: data, 
-      uniqueSeasons: Array.from(seasons).sort((a,b)=>a.localeCompare(b)) 
+      chartData: data
     };
   }, [matches]);
 

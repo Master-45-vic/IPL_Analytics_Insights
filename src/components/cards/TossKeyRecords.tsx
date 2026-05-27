@@ -1,4 +1,4 @@
-import { Trophy, TrendingUp, TrendingDown, MapPin } from 'lucide-react';
+import { TrendingUp, TrendingDown, MapPin } from 'lucide-react';
 import type { IPLMatch } from '../../types';
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';

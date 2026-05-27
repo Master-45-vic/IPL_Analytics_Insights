@@ -6,8 +6,7 @@ import { PhaseWinContribution } from '../components/charts/PhaseWinContribution'
 import { VenueScoringDNA } from '../components/charts/VenueScoringDNA';
 import { MatchMomentumCard } from '../components/cards/MatchMomentumCard';
 import { motion } from 'framer-motion';
-import { Download, Activity, Target, Zap, Hash, Trophy, Layers } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import type { DashboardData, IPLMatch, MatchFilterState } from '../types';
 
 interface MatchPhaseAnalysisProps {

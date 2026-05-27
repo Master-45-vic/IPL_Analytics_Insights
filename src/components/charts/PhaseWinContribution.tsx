@@ -77,7 +77,7 @@ export const PhaseWinContribution = ({ matches }: PhaseWinContributionProps) => 
             <Tooltip 
               cursor={{ fill: 'var(--theme-border, #ffffff05)' }}
               contentStyle={{ backgroundColor: 'var(--theme-bg-card, #111827)', borderColor: 'var(--theme-border, #ffffff20)', borderRadius: '8px' }}
-              formatter={(value: any, name: any, props: any) => [`${props.payload.percentage.toFixed(1)}%`, 'Contribution Weight']}
+              formatter={(_value: any, _name: any, props: any) => [`${props.payload.percentage.toFixed(1)}%`, 'Contribution Weight']}
             />
           </Treemap>
         </ResponsiveContainer>

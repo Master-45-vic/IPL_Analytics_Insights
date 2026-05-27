@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Swords, X, Check } from 'lucide-react';
+import { Swords, Check } from 'lucide-react';
 import type { PlayerMatchRecord } from '../../types';
 
 interface HeadToHeadLegendsProps {

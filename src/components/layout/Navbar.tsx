@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Filter, BarChart3, TrendingUp, Sun, Moon, Users, Activity } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { BarChart3, Sun, Moon, Users, Activity } from 'lucide-react';
 
 interface NavbarProps {
   activeTab: string;

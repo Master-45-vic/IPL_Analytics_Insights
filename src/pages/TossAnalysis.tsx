@@ -153,8 +153,6 @@ export const TossAnalysis = ({ data, filteredMatches, filters, updateFilters }: 
             <div>
               <DataStoryCards 
                 totalMatches={totalMatches}
-                tossWinnerWins={tossWinnerWins}
-                tossLoserWins={tossLoserWins}
                 venuesData={venuesData}
                 matches={filteredMatches}
               />
