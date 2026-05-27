@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import type { PlayerMatchRecord } from '../../types';
 import { useMemo } from 'react';
 import { Target } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface ConsistentBowlersProps {
   players: PlayerMatchRecord[];
@@ -38,7 +39,7 @@ export const ConsistentBowlers = ({ players }: ConsistentBowlersProps) => {
   if (consistentRankings.length === 0) return null;
 
   return (
-    <div className="glass-card p-6 flex flex-col h-full">
+    <div className="glass-card p-6 flex flex-col h-full relative" id="consistent-bowlers-chart">
       <div className="flex items-center gap-3 mb-6 border-b border-ipl-border pb-4">
         <Target className="text-ipl-success" size={24} />
         <div>
@@ -47,27 +48,20 @@ export const ConsistentBowlers = ({ players }: ConsistentBowlersProps) => {
         </div>
       </div>
       
-      <div className="flex flex-col gap-4">
-        {consistentRankings.map((p, i) => (
-          <motion.div 
-            key={p.name}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="flex items-center justify-between p-3 rounded-lg bg-black/20 hover:bg-white/5 transition-colors border border-transparent hover:border-ipl-success/30"
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-xl font-black text-ipl-text-muted w-6">#{i + 1}</span>
-              <div>
-                <p className="font-bold text-ipl-text">{p.name}</p>
-                <p className="text-xs text-ipl-text-muted">{p.innings} innings • {p.overs} overs</p>
-              </div>
-            </div>
-            <div className="text-right">
-              <p className="font-bold text-ipl-success">{p.economy.toFixed(2)} <span className="text-xs text-ipl-text-muted">Econ</span></p>
-            </div>
-          </motion.div>
-        ))}
+      <div className="h-[250px] w-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={consistentRankings} layout="vertical" margin={{ top: 0, right: 30, left: 30, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--theme-border, #ffffff10)" horizontal={true} vertical={false} />
+            <XAxis type="number" stroke="var(--theme-text-muted, #CBD5E1)" tick={{ fontSize: 12 }} />
+            <YAxis type="category" dataKey="name" stroke="var(--theme-text-muted, #CBD5E1)" width={90} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
+            <Tooltip 
+              cursor={{ fill: 'var(--theme-border, #ffffff05)' }} 
+              contentStyle={{ backgroundColor: 'var(--theme-bg-card, #111827)', borderColor: 'var(--theme-border, #ffffff20)', borderRadius: '8px' }}
+              formatter={(val: number) => [val.toFixed(2), 'Economy Rate']}
+            />
+            <Bar dataKey="economy" fill="var(--theme-success, #10B981)" radius={[0, 4, 4, 0]} barSize={20} animationDuration={1500} />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );

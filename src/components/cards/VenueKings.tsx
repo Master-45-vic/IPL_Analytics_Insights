@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { MapPin } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import type { PlayerMatchRecord } from '../../types';
 import { useMemo } from 'react';
 
@@ -44,7 +45,7 @@ export const VenueKings = ({ players }: VenueKingsProps) => {
   if (kings.length === 0) return null;
 
   return (
-    <div className="glass-card p-6 flex flex-col h-full">
+    <div className="glass-card p-6 flex flex-col h-full relative" id="venue-kings-chart">
       <div className="flex items-center gap-3 mb-6 border-b border-ipl-border pb-4">
         <MapPin className="text-ipl-accent" size={24} />
         <div>
@@ -53,25 +54,30 @@ export const VenueKings = ({ players }: VenueKingsProps) => {
         </div>
       </div>
       
-      <div className="flex flex-col gap-4">
-        {kings.map((k: any, i) => (
-          <motion.div 
-            key={k.venue}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="p-3 rounded-lg bg-black/20 hover:bg-white/5 transition-colors border border-transparent hover:border-ipl-accent/30 flex justify-between items-center"
-          >
-            <div>
-              <p className="text-xs text-ipl-text-muted mb-1 truncate max-w-[150px]" title={k.venue}>{k.venue}</p>
-              <p className="font-bold text-ipl-text truncate max-w-[150px]">{k.player}</p>
-            </div>
-            <div className="text-right">
-              <p className="font-extrabold text-ipl-accent text-lg">{k.runs}</p>
-              <p className="text-[10px] uppercase tracking-wider text-ipl-text-muted">Runs</p>
-            </div>
-          </motion.div>
-        ))}
+      <div className="h-[250px] w-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={kings} layout="vertical" margin={{ top: 0, right: 30, left: 30, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--theme-border, #ffffff10)" horizontal={true} vertical={false} />
+            <XAxis type="number" stroke="var(--theme-text-muted, #CBD5E1)" tick={{ fontSize: 12 }} />
+            <YAxis 
+              type="category" 
+              dataKey="venue" 
+              stroke="var(--theme-text-muted, #CBD5E1)" 
+              width={90} 
+              tick={{ fontSize: 11 }} 
+              axisLine={false} 
+              tickLine={false} 
+              tickFormatter={(val) => val.split(' ')[0]} 
+            />
+            <Tooltip 
+              cursor={{ fill: 'var(--theme-border, #ffffff05)' }} 
+              contentStyle={{ backgroundColor: 'var(--theme-bg-card, #111827)', borderColor: 'var(--theme-border, #ffffff20)', borderRadius: '8px' }}
+              labelFormatter={(val) => `Venue: ${val}`}
+              formatter={(val: number, name: string, props: any) => [val, `Runs (${props.payload.player})`]}
+            />
+            <Bar dataKey="runs" fill="var(--theme-accent, #FF6B35)" radius={[0, 4, 4, 0]} barSize={20} animationDuration={1500} />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
