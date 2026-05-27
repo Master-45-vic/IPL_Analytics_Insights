@@ -1,73 +1,134 @@
-# React + TypeScript + Vite
+🏏 IPL Analytics Insights
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive IPL analytics platform built with React 19, TypeScript, Vite, Tailwind CSS, Recharts, and Framer Motion. The dashboard transforms raw IPL ball-by-ball data into meaningful visual insights through advanced analytics, dynamic filtering, and responsive visualizations.
 
-Currently, two official plugins are available:
+📌 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+IPL Analytics Insights is designed to help users explore IPL data from multiple perspectives, including:
 
-## React Compiler
+Toss impact on match outcomes
+Match phase performance (Powerplay, Middle Overs, Death Overs)
+Batter and bowler performance analytics
+Venue-specific trends
+Team-wise and season-wise comparisons
+Interactive player profiles and statistical insights
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The application preprocesses large IPL datasets into optimized JSON files, enabling instant filtering and smooth user interaction without performance issues.
 
-## Expanding the ESLint configuration
+✨ Key Features
+🎯 Toss Analysis
+Toss Winner vs Toss Loser match outcome comparison
+Toss impact trends across IPL seasons
+Toss decision intelligence (Bat First vs Bowl First)
+Venue-wise toss advantage analysis
+Dynamic filtering by season, team, and venue
+⚡ Match Phase Analysis
+Powerplay (1–6), Middle Overs (7–15), and Death Overs (16–20) analysis
+Winning Teams vs Losing Teams phase comparison
+Phase contribution to winning matches
+Radar charts for winning team profiles
+Team mode and venue mode analytics
+Match momentum probability insights
+👑 Player Performance Analysis
+Top batters and bowlers leaderboards
+Player Hall of Fame
+Venue specialists ("Venue Kings")
+Consistent player identification
+Batting and bowling role distributions
+Interactive player profile panel with performance trends
+🎨 Modern User Experience
+Premium glassmorphism design
+Dark mode sports analytics theme
+Framer Motion animations
+Fully responsive layout
+Dynamic charts powered by Recharts
+Real-time filtering across all modules
+🛠 Technology Stack
+Frontend
+React 19
+TypeScript
+Vite
+Tailwind CSS
+Framer Motion
+Recharts
+Lucide React
+Data Processing
+Node.js
+Custom preprocessing scripts
+JSON-based optimized data delivery
+Version Control & Deployment
+Git & GitHub
+Vercel-ready architecture
+📂 Project Structure
+IPL_Analytics_Insights/
+│
+├── public/
+│   ├── data/
+│   │   ├── matches.json
+│   │   └── players.json
+│
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── hooks/
+│   ├── utils/
+│   ├── assets/
+│   └── App.tsx
+│
+├── scripts/
+│   ├── preprocess.mjs
+│   └── preprocess_players.mjs
+│
+├── data/
+│   └── raw IPL CSV datasets
+│
+├── notebooks/
+│   └── exploratory analysis notebooks
+│
+└── README.md
+⚙️ Data Engineering Pipeline
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The original IPL dataset contained over 280,000+ ball-by-ball records and was too large for direct browser processing.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+To solve this:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Custom Node.js preprocessing scripts aggregate raw data.
+Match-level and player-level statistics are calculated offline.
+Optimized JSON datasets are generated.
+React hooks cache data in memory for instant filtering and visualization.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This architecture dramatically improves performance and scalability.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+📊 Analytics Modules
+Module	Purpose
+Toss Analysis	Understand how toss outcomes influence match results
+Match Phase Analysis	Identify which innings phase contributes most to winning
+Player Performance	Analyze batters, bowlers, consistency, and venue specialists
+🚀 Getting Started
+Clone Repository
+git clone https://github.com/Master-45-vic/IPL_Analytics_Insights.git
+cd IPL_Analytics_Insights
+Install Dependencies
+npm install
+Run Development Server
+npm run dev
+Production Build
+npm run build
+Preview Production Build
+npm run preview
+📈 Future Enhancements
+Head-to-head team analysis
+Advanced bowling matchup analytics
+Win probability prediction models
+AI-generated match insights
+Fantasy cricket recommendation engine
+Predictive analytics using machine learning
+👨‍💻 Author
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Prashanth M
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Passionate about Data Analytics, Artificial Intelligence, Machine Learning, and Sports Analytics.
+
+📄 License
+
+This project was developed for educational, research, and competition purposes using publicly available IPL datasets.
