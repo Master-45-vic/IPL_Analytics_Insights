@@ -16,6 +16,11 @@ IPL Analytics Insights helps users explore IPL data from multiple perspectives, 
 - Interactive player profiles and statistical insights
 
 ---
+## 🎬 Demo & Presentation
+
+- 📊 **Project Presentation (PPT):** https://canva.link/jkawb8qmk83rsru  
+- 🎥 **Project Demo Video:** https://drive.google.com/file/d/1KBzhQEX7NaBAky5BA8LB1pj9NGAyH4XO/view
+---
 
 ## ✨ Features
 
